@@ -1,0 +1,6 @@
+include ':lib_store'
+include ':lib_app_tools'
+include ':lib_gson'
+include ':lib_tools'
+include ':app'
+rootProject.name = "FelixStore"
