@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.felix.lib_gson.toJson
-import com.felix.lib_store.base.service.ApiProxy
-import com.felix.lib_store.base.bean.AppCategory
-import io.reactivex.rxjava3.core.Observable
+import com.felix.lib_store.base.service.ApiDegelate
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     fun test() {
 
-        ApiProxy.getAppDetail("com.tencent.mtt").subscribeOn(Schedulers.io()).doOnNext {
+        ApiDegelate.getAppDetail("com.tencent.mtt").subscribeOn(Schedulers.io()).doOnNext {
             Log.i("hmf", it.toJson())
         }.subscribe()
     }

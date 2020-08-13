@@ -20,7 +20,7 @@ interface LocalApiSAervice {
     fun update() {
         Observable.range(0, 30).map {
             AppCategory().apply {
-                name = ApiProxy.getCategorTest(it).runCatching { blockingFirst() }.getOrNull() ?: ""
+                name = ApiDegelate.getCategorTest(it).runCatching { blockingFirst() }.getOrNull() ?: ""
                 id = it.toString()
             }
         }.filter { it.name.isNotEmpty() }.doOnNext {
