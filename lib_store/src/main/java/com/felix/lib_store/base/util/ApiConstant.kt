@@ -5,6 +5,9 @@ import java.util.regex.Pattern
 val <T> T.AppUrl: String
     get() = "http://app.mi.com"
 
+val <T> T.AdmPkg: String
+    get() = "com.dv.adm.pay"
+
 val <T> T.CommentNumPattern: Pattern by lazy {
     Pattern.compile("\\d+")
 }

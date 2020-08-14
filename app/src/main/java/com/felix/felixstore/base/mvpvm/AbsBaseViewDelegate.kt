@@ -1,5 +1,6 @@
-package com.felix.felixstore.mvpvm
+package com.felix.felixstore.base.mvpvm
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,23 +18,21 @@ import kotlinx.android.extensions.LayoutContainer
  * @Date: 2020/8/12
  * @Des: AbsBaseViewHelper
  */
-abstract class AbsBaseViewDelegate<VM : ViewModel> : LayoutContainer {
+abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> : LayoutContainer {
     override var containerView: View? = null
     private var delegate: AppCompatDelegate? = null
+    protected val context: Context
+        get() = containerView?.context!!
 
     //fragment的时候需要重写，直接返回view，不建议做其他处理
-    open fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    open fun onCreateView(inflater: LayoutInflater, container: ViewGroup?): View? {
         return null
     }
 
     /**
      *fragment 做view的初始化操作，activity调用setContentView后做初始化操作
      */
-    open fun onActivityCreated(savedInstanceState: Bundle?) {
+    open fun onActivityCreated() {
     }
 
     protected fun setContentView(@LayoutRes resId: Int) {
@@ -57,6 +56,7 @@ abstract class AbsBaseViewDelegate<VM : ViewModel> : LayoutContainer {
         }
     }
 
+    protected lateinit var presenter: P
     protected lateinit var viewModel: VM
     private lateinit var lifecycleOwner: LifecycleOwner
 
@@ -65,13 +65,14 @@ abstract class AbsBaseViewDelegate<VM : ViewModel> : LayoutContainer {
      * @param delegate activity的时候传递，fragment默认置空即可
      */
     fun attach(
-        viewModel: VM,
+        presenter: P,
         lifecycleOwner: LifecycleOwner,
         view: View?,
         delegate: AppCompatDelegate? = null
     ) {
+        this.presenter = presenter
         this.lifecycleOwner = lifecycleOwner
-        this.viewModel = viewModel
+        this.viewModel = presenter.viewModel
         this.containerView = view
         this.delegate = delegate
     }

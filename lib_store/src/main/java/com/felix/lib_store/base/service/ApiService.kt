@@ -10,12 +10,12 @@ interface ApiService : LocalApiSAervice, RemoteApiService {
         return remoteApiService.getAppItem(keywords, page)
     }
 
-    override fun getHotAppItem(categor: String?): Observable<MutableList<AppItem>> {
-        return remoteApiService.getHotAppItem(categor)
+    override fun getCategorAppItem(categor: String?): Observable<MutableList<AppItem>> {
+        return remoteApiService.getCategorAppItem(categor)
     }
 
-    override fun getTopList(): Observable<MutableList<AppItem>> {
-        return remoteApiService.topList
+    override fun getTopList(page: Int): Observable<MutableList<AppItem>> {
+        return remoteApiService.getTopList(page)
     }
 
     override fun getCategorTest(categor: Int): Observable<String> {

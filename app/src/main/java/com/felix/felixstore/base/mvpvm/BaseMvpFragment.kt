@@ -1,4 +1,4 @@
-package com.felix.felixstore.mvpvm
+package com.felix.felixstore.base.mvpvm
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,12 +13,11 @@ import java.lang.reflect.ParameterizedType
 open class BaseMvpFragment<V : IBaseView,
         VM : ViewModel,
         P : AbsBasePresenter<V, VM>,
-        VH : AbsBaseViewDelegate<VM>> :
-    BaseFragment(),
-    IBaseView {
+        VD : AbsBaseViewDelegate<P, VM>> :
+    BaseFragment() {
     protected lateinit var presenter: P
-    protected lateinit var viewDelegate: VH
-    protected val ViewModel: VM
+    protected lateinit var viewDelegate: VD
+    protected val viewModel: VM
         get() = presenter.viewModel
 
     final override fun onCreateView(
@@ -26,30 +25,16 @@ open class BaseMvpFragment<V : IBaseView,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewDelegate = newViewHelper()
-        return viewDelegate.onCreateView(inflater, container, savedInstanceState)
+        viewDelegate = newViewDelegate()
+        return viewDelegate.onCreateView(inflater, container)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter = newPresenter()
-        presenter.attach(this, this as V)
-        viewDelegate.attach(presenter.viewModel, this, view)
-        viewDelegate.onActivityCreated(savedInstanceState)
-    }
-
-    open protected fun newViewHelper(): VH {
-        return javaClass.genericSuperclass.takeIf { it is ParameterizedType }?.let {
-            it as ParameterizedType
-        }?.let {
-            it.actualTypeArguments
-        }?.let {
-            it.getOrNull(3)
-        }?.let {
-            it as Class<VH>
-        }?.let {
-            it.newInstance()
-        }!!
+        presenter.attach(this, viewDelegate as V)
+        viewDelegate.attach(presenter, this, view)
+        viewDelegate.onActivityCreated()
     }
 
     open protected fun newPresenter(): P {
@@ -65,6 +50,21 @@ open class BaseMvpFragment<V : IBaseView,
             it.newInstance()
         }!!
     }
+
+    open protected fun newViewDelegate(): VD {
+        return javaClass.genericSuperclass.takeIf { it is ParameterizedType }?.let {
+            it as ParameterizedType
+        }?.let {
+            it.actualTypeArguments
+        }?.let {
+            it.getOrNull(3)
+        }?.let {
+            it as Class<VD>
+        }?.let {
+            it.newInstance()
+        }!!
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

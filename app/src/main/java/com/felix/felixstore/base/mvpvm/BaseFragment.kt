@@ -1,4 +1,4 @@
-package com.felix.felixstore.mvpvm
+package com.felix.felixstore.base.mvpvm
 
 import androidx.fragment.app.Fragment
 

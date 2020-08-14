@@ -12,6 +12,18 @@ public class AppItem implements Parcelable {
     private String appPkgName;
     private int allPage;
 
+    public static final Creator<AppItem> CREATOR = new Creator<AppItem>() {
+        @Override
+        public AppItem createFromParcel(Parcel in) {
+            return new AppItem(in);
+        }
+
+        @Override
+        public AppItem[] newArray(int size) {
+            return new AppItem[size];
+        }
+    };
+
     public String getAppName() {
         return appName;
     }

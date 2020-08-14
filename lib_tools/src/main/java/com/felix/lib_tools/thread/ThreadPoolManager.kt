@@ -76,20 +76,20 @@ internal class ThreadPoolManager {
     }
 }
 
-val <T> T.DBThreadProxy
+val <T> T.DBThreadDelegate
     get() = ThreadPoolManager.instance.getDBThreadPool()
 
-val <T> T.NetThreadProxy
+val <T> T.NetThreadDelegate
     get() = ThreadPoolManager.instance.getNetThreadPool()
 
-val <T> T.ComputeThreadProxy
+val <T> T.ComputeThreadDelegate
     get() = ThreadPoolManager.instance.getComputeThreadPool()
 
-val <T> T.ScheduleThreadProxy
+val <T> T.ScheduleThreadDelegate
     get() = ThreadPoolManager.instance.getScheduleThreadPool()
 
-val <T> T.BackstageThreadProxy
+val <T> T.BackstageThreadDelegate
     get() = ThreadPoolManager.instance.getBackstageThreadPool()
 
-val <T> T.ThreadProxy
+val <T> T.ThreadDelegate
     get() = ThreadPoolManager.instance.getCommonThreadPool()

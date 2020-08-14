@@ -15,10 +15,10 @@ public interface RemoteApiService {
     Observable<List<AppItem>> getAppItem(@Query("keywords") String keywords, @Query("page") int page);
 
     @GET("hotCatApp/{categor}")
-    Observable<List<AppItem>> getHotAppItem(@Path("categor") String categor);
+    Observable<List<AppItem>> getCategorAppItem(@Path("categor") String categor);
 
     @GET("topList")
-    Observable<List<AppItem>> getTopList();
+    Observable<List<AppItem>> getTopList(@Query("page") int page);
 
 
     @GET("hotCatApp/{categor}")

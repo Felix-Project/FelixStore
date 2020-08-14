@@ -43,9 +43,9 @@ internal class ToastManager : IToast {
     }
 }
 
-val <T> T.ToastProxy: IToast
+val <T> T.ToastDelegate: IToast
     get() = ToastManager.instance
 
 fun String.showToast(duration: Int = Toast.LENGTH_SHORT, gravity: Int = Gravity.CENTER) {
-    ToastProxy.show(this, duration, gravity)
+    ToastDelegate.show(this, duration, gravity)
 }
