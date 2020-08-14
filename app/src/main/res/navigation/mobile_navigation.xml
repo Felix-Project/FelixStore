@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
-
+    app:startDestination="@+id/nav_slideshow">
     <fragment
         android:id="@+id/nav_home"
         android:name="com.felix.felixstore.ui.main.hot.HotFragment"
@@ -19,7 +18,7 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.felix.felixstore.ui.main.slideshow.SlideshowFragment"
+        android:name="com.felix.felixstore.ui.main.search.SearchFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
