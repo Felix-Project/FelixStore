@@ -36,8 +36,6 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
         rvAppList.layoutManager = LinearLayoutManager(context)
         rvAppList.adapter = appListAdp
 
-        etKeyword.focusable = FOCUSABLE_AUTO
-        etKeyword.requestFocus()
         etKeyword.setOnEditorActionListener { v, actionId, event ->
             arrayOf(
                 EditorInfo.IME_ACTION_SEARCH,
@@ -75,7 +73,7 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
                 inputManager.isActive
             }?.let {
                 inputManager.hideSoftInputFromWindow(
-                    etKeyword.windowToken,
+                    v.windowToken,
                     InputMethodManager.HIDE_NOT_ALWAYS
                 )
                 Log.i("hmf", "hide input manager.")
@@ -99,7 +97,7 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
             inputManager.isActive
         }?.let {
             inputManager.hideSoftInputFromWindow(
-                etKeyword.windowToken,
+                containerView.windowToken,
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
         }

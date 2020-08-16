@@ -20,7 +20,7 @@ import kotlinx.android.extensions.LayoutContainer
  */
 abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> : LayoutContainer,
     IloadDialog {
-    override var containerView: View? = null
+    override lateinit var containerView: View
     private var delegate: AppCompatDelegate? = null
     protected val context: Context
         get() = containerView?.context!!
@@ -47,21 +47,27 @@ abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> 
     protected fun setContentView(@LayoutRes resId: Int) {
         delegate?.setContentView(resId)
         delegate?.let {
-            containerView = it.findViewById(android.R.id.content)
+            it.findViewById(android.R.id.content) as View?
+        }?.let {
+            containerView = it
         }
     }
 
     protected fun setContentView(view: View?) {
         delegate?.setContentView(view)
         delegate?.let {
-            containerView = it.findViewById(android.R.id.content)
+            it.findViewById(android.R.id.content) as View?
+        }?.let {
+            containerView = it
         }
     }
 
     protected fun setContentView(view: View?, lp: ViewGroup.LayoutParams?) {
         delegate?.setContentView(view, lp)
         delegate?.let {
-            containerView = it.findViewById(android.R.id.content)
+            it.findViewById(android.R.id.content) as View?
+        }?.let {
+            containerView = it
         }
     }
 
@@ -82,7 +88,7 @@ abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> 
         this.presenter = presenter
         this.lifecycleOwner = lifecycleOwner
         this.viewModel = presenter.viewModel
-        this.containerView = view
+        this.containerView = view!!
         this.delegate = delegate
     }
 
