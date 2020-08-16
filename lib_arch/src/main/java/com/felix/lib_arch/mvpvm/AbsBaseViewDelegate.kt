@@ -1,7 +1,7 @@
-package com.felix.felixstore.base.mvpvm
+package com.felix.lib_arch.mvpvm
 
+import android.app.ProgressDialog
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +18,16 @@ import kotlinx.android.extensions.LayoutContainer
  * @Date: 2020/8/12
  * @Des: AbsBaseViewHelper
  */
-abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> : LayoutContainer {
+abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> : LayoutContainer,
+    IloadDialog {
     override var containerView: View? = null
     private var delegate: AppCompatDelegate? = null
     protected val context: Context
         get() = containerView?.context!!
+
+    override var ctx: Context? = null
+        get() = containerView?.context
+    override var dialog: ProgressDialog? = null
 
     //fragment的时候需要重写，直接返回view，不建议做其他处理
     open fun onCreateView(inflater: LayoutInflater, container: ViewGroup?): View? {
@@ -33,6 +38,10 @@ abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> 
      *fragment 做view的初始化操作，activity调用setContentView后做初始化操作
      */
     open fun onActivityCreated() {
+    }
+
+    open fun onDestroy() {
+        dismissLoading()
     }
 
     protected fun setContentView(@LayoutRes resId: Int) {

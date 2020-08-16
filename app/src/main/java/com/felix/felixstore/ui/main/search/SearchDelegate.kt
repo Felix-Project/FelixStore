@@ -6,15 +6,13 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.FOCUSABLE_AUTO
-import android.view.View.NOT_FOCUSABLE
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.felix.felixstore.R
-import com.felix.felixstore.base.mvpvm.AbsBaseViewDelegate
+import com.felix.lib_arch.mvpvm.AbsBaseViewDelegate
 import com.felix.felixstore.ui.main.AppListAdp
-import com.felix.lib_store.base.bean.AppItem
 import com.felix.lib_store.base.util.AdmPkg
 import com.felix.lib_store.base.util.AppUrl
 import kotlinx.android.synthetic.main.search_fragment.*
@@ -59,6 +57,7 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
         //view model observe
         observe(viewModel.hotAppList) {
             appListAdp.datas = it
+            dismissLoading()
         }
         appListAdp.onItemClickListenner = { view, appItem, position, size ->
 //            ToastDelegate.show("点击了详情")
@@ -89,5 +88,6 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
                 InputMethodManager.HIDE_NOT_ALWAYS
             )
         }
+        showLoading("加载中……")
     }
 }

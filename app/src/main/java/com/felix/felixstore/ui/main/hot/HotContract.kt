@@ -1,7 +1,7 @@
 package com.felix.felixstore.ui.main.hot
 
-import com.felix.felixstore.base.mvpvm.IBasePresenter
-import com.felix.felixstore.base.mvpvm.IBaseView
+import com.felix.lib_arch.mvpvm.IBasePresenter
+import com.felix.lib_arch.mvpvm.IBaseView
 
 /**
  * @Author: Mingfa.Huang

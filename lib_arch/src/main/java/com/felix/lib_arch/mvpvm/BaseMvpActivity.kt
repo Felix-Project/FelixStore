@@ -1,4 +1,4 @@
-package com.felix.felixstore.base.mvpvm
+package com.felix.lib_arch.mvpvm
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
@@ -53,5 +53,6 @@ class BaseMvpActivity<V : IBaseView,
     override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
+        viewDelegate.onDestroy()
     }
 }

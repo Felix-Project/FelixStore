@@ -1,3 +1,4 @@
+include ':lib_arch'
 include ':lib_store'
 include ':lib_app_tools'
 include ':lib_gson'

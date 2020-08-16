@@ -1,4 +1,4 @@
-package com.felix.felixstore.base.mvpvm
+package com.felix.lib_arch.mvpvm
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -69,6 +69,7 @@ open class BaseMvpFragment<V : IBaseView,
     override fun onDestroyView() {
         super.onDestroyView()
         presenter.detach()
+        viewDelegate.onDestroy()
     }
 
     protected fun <T> observe(data: LiveData<T>, action: (T) -> Unit) {

@@ -1,6 +1,6 @@
 package com.felix.felixstore.ui.main.hot
 
-import com.felix.felixstore.base.mvpvm.AbsBasePresenter
+import com.felix.lib_arch.mvpvm.AbsBasePresenter
 import com.felix.felixstore.rx.ext.RxMain
 import com.felix.felixstore.rx.ext.RxNet
 import com.felix.felixstore.rx.ext.subscribeEmpty

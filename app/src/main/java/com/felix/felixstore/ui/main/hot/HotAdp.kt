@@ -1,8 +1,8 @@
 //package com.felix.felixstore.ui.main.hot
 //
 //import android.view.View
-//import com.felix.felixstore.base.adp.BaseAdp
-//import com.felix.felixstore.base.adp.BaseVH
+//import com.felix.lib_arch.adp.BaseAdp
+//import com.felix.lib_arch.adp.BaseVH
 //import com.felix.lib_store.base.bean.AppItem
 //
 ///**

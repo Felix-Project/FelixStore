@@ -3,7 +3,7 @@ package com.felix.felixstore.ui.main
 import android.view.View
 import com.bumptech.glide.Glide
 import com.felix.felixstore.R
-import com.felix.felixstore.base.adp.BaseAdp
+import com.felix.lib_arch.adp.BaseAdp
 import com.felix.lib_store.base.bean.AppItem
 import kotlinx.android.synthetic.main.common_app_item.view.*
 

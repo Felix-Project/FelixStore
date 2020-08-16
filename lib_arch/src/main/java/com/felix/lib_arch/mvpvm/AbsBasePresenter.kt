@@ -1,4 +1,4 @@
-package com.felix.felixstore.base.mvpvm
+package com.felix.lib_arch.mvpvm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

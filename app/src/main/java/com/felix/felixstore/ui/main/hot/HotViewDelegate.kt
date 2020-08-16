@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.felix.felixstore.R
-import com.felix.felixstore.base.mvpvm.AbsBaseViewDelegate
+import com.felix.lib_arch.mvpvm.AbsBaseViewDelegate
 import com.felix.felixstore.ext.lastUnVisibleCount
 import com.felix.felixstore.ui.main.AppListAdp
 import com.felix.lib_store.base.util.AdmPkg
