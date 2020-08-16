@@ -3,6 +3,7 @@ package com.felix.felixstore.ui.main.search
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.FOCUSABLE_AUTO
@@ -50,9 +51,6 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
         etKeyword.setOnClickListener {
             etKeyword.selectAll()
         }
-        tvSearch.setOnClickListener {
-            searchCurrent()
-        }
 
         //view model observe
         observe(viewModel.hotAppList) {
@@ -72,6 +70,23 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
             }
             context.startActivity(intent)
         }
+        rvAppList.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            takeIf { Math.abs(scrollY - oldScrollY) > 10 }?.takeIf {
+                inputManager.isActive
+            }?.let {
+                inputManager.hideSoftInputFromWindow(
+                    etKeyword.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS
+                )
+                Log.i("hmf", "hide input manager.")
+            }
+        }
+    }
+
+    val inputManager by lazy {
+        context.getSystemService(INPUT_METHOD_SERVICE).let {
+            it as InputMethodManager
+        }
     }
 
     private fun searchCurrent() {
@@ -80,10 +95,10 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
         appListAdp.notifyDataSetChanged()
 //        etKeyword.focusable= NOT_FOCUSABLE
 //        rvAppList.requestFocus()
-        context.getSystemService(INPUT_METHOD_SERVICE).let {
-            it as InputMethodManager
-        }.let {
-            it.hideSoftInputFromWindow(
+        takeIf {
+            inputManager.isActive
+        }?.let {
+            inputManager.hideSoftInputFromWindow(
                 etKeyword.windowToken,
                 InputMethodManager.HIDE_NOT_ALWAYS
             )

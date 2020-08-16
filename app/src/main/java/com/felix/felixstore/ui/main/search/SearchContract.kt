@@ -13,4 +13,5 @@ interface SearchView : IBaseView {
 
 interface SearchPresenter : IBasePresenter {
     fun getSearch(keyword: String)
+    fun getDefApplist()
 }

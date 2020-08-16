@@ -19,4 +19,13 @@ class SearchPresenterImpl : AbsBasePresenter<SearchView, SearchViewModel>(), Sea
             }
         }.subscribeEmpty()
     }
+
+    override fun getDefApplist() {
+        ApiDegelate.getTopList(1).subscribeOn(RxNet).doOnNext { appList ->
+            viewModel.hotAppList.let {
+                it.value?.clear()
+                it.addValue(appList)
+            }
+        }.subscribeEmpty()
+    }
 }
