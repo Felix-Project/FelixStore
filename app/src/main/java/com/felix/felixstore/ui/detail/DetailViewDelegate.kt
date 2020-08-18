@@ -56,7 +56,7 @@ class DetailViewDelegate : AbsBaseViewDelegate<DetailPresenterImpl, DetailViewMo
                 (it / 1000).toString() + "k"
             } ?: kotlin.run { appDetailBean.appRemarkNum.toString() }
 
-            tvAppStar.text = (appDetailBean.appStartNum / 2).toString()
+            tvAppStar.text = String.format("%.1f", appDetailBean.appStartNum / 2f)
             tvAppSize.text = appDetailBean.appSize.let {
                 var ch = arrayOf('K', 'M', 'G', 'T', 'P')
                 var index = -1

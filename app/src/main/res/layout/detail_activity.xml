@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:drawableEnd="@drawable/ic_stars_24px"
+            android:drawableEnd="@drawable/ic_star"
             android:drawablePadding="4dp"
             app:layout_constraintEnd_toStartOf="@+id/tvAppRemarkNum"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +85,7 @@
             android:id="@+id/tvAppRemarkNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_comment_24px"
+            android:drawableEnd="@drawable/ic_comment"
             android:drawablePadding="4dp"
             app:layout_constraintEnd_toStartOf="@+id/tvAppSize"
             app:layout_constraintStart_toEndOf="@id/tvAppStar"
@@ -96,6 +96,8 @@
             android:id="@+id/tvAppSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_file_size"
+            android:drawablePadding="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvAppRemarkNum"
             app:layout_constraintTop_toTopOf="@id/tvAppStar"
@@ -109,6 +111,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/detail_app_install"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -125,29 +128,55 @@
             app:layout_constraintTop_toBottomOf="@id/btnAppInstall" />
 
         <TextView
+            android:id="@+id/tvFeatureTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="新特性"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvAppScreenshot" />
+
+        <TextView
             android:id="@+id/tvAppFeature"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvAppScreenshot"
-            tools:text="新特性\n解决了过于流畅的bug" />
+            app:layout_constraintTop_toBottomOf="@id/tvFeatureTip"
+            tools:text="解决了过于流畅的bug" />
+
+        <TextView
+            android:id="@+id/tvDescriptionTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="应用介绍"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAppFeature" />
 
         <TextView
             android:id="@+id/tvAppDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvAppFeature"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionTip"
             tools:text="提供耗电的功能" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
