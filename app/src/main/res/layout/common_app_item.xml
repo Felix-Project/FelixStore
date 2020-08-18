@@ -14,7 +14,7 @@
 
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.felix.lib_tools.widget.RoundImageView
             android:id="@+id/ivAppIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -22,6 +22,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:radius="4dp"
             tools:src="@mipmap/ic_launcher" />
 
         <TextView

@@ -7,7 +7,7 @@ import java.util.List;
 public class AppDetailBean extends AppItem {
     private String appCompanyTip;
     private List<String> appScreenshotList;
-    private String appDescript;
+    private String appDescription;
     private String appFeature;
     private int appRemarkNum;
     private int appStartNum;
@@ -34,12 +34,12 @@ public class AppDetailBean extends AppItem {
         this.appScreenshotList = appScreenshotList;
     }
 
-    public String getAppDescript() {
-        return appDescript;
+    public String getAppDescription() {
+        return appDescription;
     }
 
-    public void setAppDescript(String appDescript) {
-        this.appDescript = appDescript;
+    public void setAppDescription(String appDescription) {
+        this.appDescription = appDescription;
     }
 
     public String getAppFeature() {
@@ -116,7 +116,7 @@ public class AppDetailBean extends AppItem {
         super.writeToParcel(dest, flags);
         dest.writeString(this.appCompanyTip);
         dest.writeStringList(this.appScreenshotList);
-        dest.writeString(this.appDescript);
+        dest.writeString(this.appDescription);
         dest.writeString(this.appFeature);
         dest.writeInt(this.appRemarkNum);
         dest.writeInt(this.appStartNum);
@@ -134,7 +134,7 @@ public class AppDetailBean extends AppItem {
         super(in);
         this.appCompanyTip = in.readString();
         this.appScreenshotList = in.createStringArrayList();
-        this.appDescript = in.readString();
+        this.appDescription = in.readString();
         this.appFeature = in.readString();
         this.appRemarkNum = in.readInt();
         this.appStartNum = in.readInt();

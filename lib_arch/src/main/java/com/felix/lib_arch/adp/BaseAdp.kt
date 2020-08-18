@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.felix.lib_arch.mvpvm.ITAG
 
 /**
  * @Author: Mingfa.Huang
  * @Date: 2020/8/14
  * @Des: BaseAdp
  */
-abstract class BaseAdp<T> : RecyclerView.Adapter<BaseAdp.CommonVH>() {
+abstract class BaseAdp<T> : RecyclerView.Adapter<BaseAdp.CommonVH>(), ITAG {
 
     var datas = mutableListOf<T>()
         set(value) {

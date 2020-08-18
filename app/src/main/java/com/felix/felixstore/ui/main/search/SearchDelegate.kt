@@ -12,6 +12,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.felix.felixstore.R
+import com.felix.felixstore.ui.detail.DetailActivity
 import com.felix.lib_arch.mvpvm.AbsBaseViewDelegate
 import com.felix.felixstore.ui.main.AppListAdp
 import com.felix.lib_store.base.util.AdmPkg
@@ -57,16 +58,17 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
         }
         appListAdp.onItemClickListenner = { view, appItem, position, size ->
 //            ToastDelegate.show("点击了详情")
-            val uri: Uri = Uri.parse(AppUrl + appItem.appDetailUrl)
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            context.packageManager.getInstalledPackages(0)?.any {
-                AdmPkg == it.packageName
-            }?.takeIf {
-                it
-            }?.let {
-                intent.setPackage(AdmPkg)
-            }
-            context.startActivity(intent)
+//            val uri: Uri = Uri.parse(AppUrl + appItem.appDetailUrl)
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            context.packageManager.getInstalledPackages(0)?.any {
+//                AdmPkg == it.packageName
+//            }?.takeIf {
+//                it
+//            }?.let {
+//                intent.setPackage(AdmPkg)
+//            }
+//            context.startActivity(intent)
+            DetailActivity.start(context, appItem)
         }
         rvAppList.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
             takeIf { Math.abs(scrollY - oldScrollY) > 10 }?.takeIf {

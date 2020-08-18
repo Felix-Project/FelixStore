@@ -3,6 +3,7 @@ package com.felix.lib_tools.widget
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import com.felix.lib_tools.R
 
@@ -13,8 +14,13 @@ import com.felix.lib_tools.R
  */
 class RoundImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     AppCompatImageView(context, attrs, defStyleAttr) {
+    companion object {
+        val TAG = RoundImageView::class.java.simpleName
+    }
+
     var round: Float = 0f
     val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.DITHER_FLAG)
+    val layerPaint = Paint()
 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.RoundImageView, defStyleAttr, 0).let {
@@ -25,11 +31,10 @@ class RoundImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
 
 
     val path = Path()
-    val rectF = RectF()
+    private val rectF = RectF()
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        rectF.set(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat())
-
+        rectF.set(0f, 0f, (right - left).toFloat(), (bottom - top).toFloat())
         path.reset()
         path.addRoundRect(rectF, round, round, Path.Direction.CW)
         path.addRect(rectF, Path.Direction.CCW)

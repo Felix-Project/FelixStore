@@ -33,10 +33,12 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                 this.appStartNum = it.select(".star1-empty").firstOrNull()?.let {
                     it.children().firstOrNull()?.className()
                 }.runCatching {
-                    this?.last()?.toInt() ?: 0
+                    this?.last()?.let {
+                        it.toInt()-'0'.toInt()
+                    }?:0
                 }.getOrDefault(0)
                 //评论数
-                this.appRemarkNum = it.select("span").firstOrNull()?.text()?.let {
+                this.appRemarkNum = it.select(".app-intro-comment").firstOrNull()?.text()?.let {
                     CommentNumPattern.matcher(it).takeIf { it.find() }?.let {
                         it.group()
                     }
@@ -62,6 +64,7 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                         val size =
                             it.substring(0, it.length - 2)
                                 .replace(" ", "")
+                                .replace(",","")
                                 .toDoubleOrNull() ?: 0.0
                         this.appSize = it.trimEnd().last().let {
                             if (it in arrayOf('k', 'K')) {
@@ -110,7 +113,7 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                 }?.let {
                     it.replace("</br>", "\n")
                 }?.let {
-                    this.appDescript = it
+                    this.appDescription = it
                 }
 
                 it.getOrNull(1)?.text()?.let {

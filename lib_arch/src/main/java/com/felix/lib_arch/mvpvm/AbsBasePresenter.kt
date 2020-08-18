@@ -9,7 +9,7 @@ import java.lang.reflect.ParameterizedType
 /**
  * 建议无参构造函数
  */
-abstract class AbsBasePresenter<V : IBaseView, VM : ViewModel> {
+abstract class AbsBasePresenter<V : IBaseView, VM : ViewModel>:ITAG {
     lateinit var viewModel: VM
     protected lateinit var view: V
     open fun attach(viewModelStoreOwner: ViewModelStoreOwner, view: V) {

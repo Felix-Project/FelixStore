@@ -29,5 +29,5 @@ internal class ApiManager : ApiService {
         }
 }
 
-val <T> T.ApiDegelate: ApiService
+val <T> T.ApiDelegate: ApiService
     get() = ApiManager.instance
