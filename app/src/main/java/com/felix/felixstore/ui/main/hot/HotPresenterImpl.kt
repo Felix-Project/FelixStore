@@ -4,7 +4,7 @@ import com.felix.lib_arch.mvpvm.AbsBasePresenter
 import com.felix.felixstore.rx.ext.RxMain
 import com.felix.felixstore.rx.ext.RxNet
 import com.felix.felixstore.rx.ext.subscribeEmpty
-import com.felix.lib_store.base.service.ApiDegelate
+import com.felix.lib_store.base.service.ApiDelegate
 
 /**
  * @Author: Mingfa.Huang
@@ -20,7 +20,7 @@ class HotPresenterImpl : AbsBasePresenter<HotView, HotViewModel>(), HotPresenter
     }
 
     override fun getNextHotAppList() {
-        ApiDegelate.getTopList(nextPage).subscribeOn(RxNet).also {
+        ApiDelegate.getTopList(nextPage).subscribeOn(RxNet).also {
 
         }.doOnNext { appList ->
             viewModel.hotAppList.addValue(appList)

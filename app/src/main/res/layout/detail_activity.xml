@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--base info-->
+        <com.felix.lib_tools.widget.RoundImageView
+            android:id="@+id/ivAppIcon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/detail_app_icon_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:radius="4dp"
+            tools:src="@drawable/ic_app_store_round" />
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:textColor="#ff000000"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/ivAppIcon"
+            app:layout_constraintTop_toTopOf="@id/ivAppIcon"
+            tools:text="哔哩哔哩" />
+
+
+        <TextView
+            android:id="@+id/tvAppPkg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/tvAppCategory"
+            app:layout_constraintStart_toStartOf="@id/tvAppName"
+            app:layout_constraintTop_toBottomOf="@id/tvAppName"
+            tools:text="com.tencent.mm" />
+
+
+        <TextView
+            android:id="@+id/tvAppCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivAppIcon"
+            app:layout_constraintStart_toStartOf="@id/tvAppName"
+            tools:text="影音视听" />
+
+        <TextView
+            android:id="@+id/tvAppCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/tvAppCategory"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="SmallSp"
+            tools:text="腾讯有限公司" />
+
+
+        <!-- detail -->
+        <TextView
+            android:id="@+id/tvAppStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:drawableEnd="@drawable/ic_star"
+            android:drawablePadding="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvAppRemarkNum"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivAppIcon"
+            tools:text="4.6" />
+
+        <TextView
+            android:id="@+id/tvAppRemarkNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_comment"
+            android:drawablePadding="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/tvAppSize"
+            app:layout_constraintStart_toEndOf="@id/tvAppStar"
+            app:layout_constraintTop_toTopOf="@id/tvAppStar"
+            tools:text="213k" />
+
+        <TextView
+            android:id="@+id/tvAppSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_file_size"
+            android:drawablePadding="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvAppRemarkNum"
+            app:layout_constraintTop_toTopOf="@id/tvAppStar"
+            tools:text="10M" />
+
+
+        <Button
+            android:id="@+id/btnAppInstall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="48dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/detail_app_install"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAppStar" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAppScreenshot"
+            android:layout_width="0dp"
+            android:layout_height="256dp"
+            android:padding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAppInstall" />
+
+        <TextView
+            android:id="@+id/tvFeatureTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="新特性"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvAppScreenshot" />
+
+        <TextView
+            android:id="@+id/tvAppFeature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFeatureTip"
+            tools:text="解决了过于流畅的bug" />
+
+        <TextView
+            android:id="@+id/tvDescriptionTip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="应用介绍"
+            android:textColor="#FF000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAppFeature" />
+
+        <TextView
+            android:id="@+id/tvAppDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionTip"
+            tools:text="提供耗电的功能" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

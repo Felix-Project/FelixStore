@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.felix.lib_gson.toJson
-import com.felix.lib_store.base.service.ApiDegelate
+import com.felix.lib_store.base.service.ApiDelegate
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     fun test() {
 
-        ApiDegelate.getAppDetail("com.tencent.mtt").subscribeOn(Schedulers.io()).doOnNext {
+        ApiDelegate.getAppDetail("com.tencent.mtt").subscribeOn(Schedulers.io()).doOnNext {
             Log.i("hmf", it.toJson())
         }.subscribe()
     }

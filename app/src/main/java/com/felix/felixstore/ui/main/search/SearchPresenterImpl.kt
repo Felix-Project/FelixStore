@@ -3,7 +3,7 @@ package com.felix.felixstore.ui.main.search
 import com.felix.lib_arch.mvpvm.AbsBasePresenter
 import com.felix.felixstore.rx.ext.RxNet
 import com.felix.felixstore.rx.ext.subscribeEmpty
-import com.felix.lib_store.base.service.ApiDegelate
+import com.felix.lib_store.base.service.ApiDelegate
 
 /**
  * @Author: Mingfa.Huang
@@ -12,7 +12,7 @@ import com.felix.lib_store.base.service.ApiDegelate
  */
 class SearchPresenterImpl : AbsBasePresenter<SearchView, SearchViewModel>(), SearchPresenter {
     override fun getSearch(keyword: String) {
-        ApiDegelate.getAppItem(keyword, 1).subscribeOn(RxNet).doOnNext { appList ->
+        ApiDelegate.getAppItem(keyword, 1).subscribeOn(RxNet).doOnNext { appList ->
             viewModel.hotAppList.let {
                 it.value?.clear()
                 it.addValue(appList)
@@ -21,7 +21,7 @@ class SearchPresenterImpl : AbsBasePresenter<SearchView, SearchViewModel>(), Sea
     }
 
     override fun getDefApplist() {
-        ApiDegelate.getTopList(1).subscribeOn(RxNet).doOnNext { appList ->
+        ApiDelegate.getTopList(1).subscribeOn(RxNet).doOnNext { appList ->
             viewModel.hotAppList.let {
                 it.value?.clear()
                 it.addValue(appList)

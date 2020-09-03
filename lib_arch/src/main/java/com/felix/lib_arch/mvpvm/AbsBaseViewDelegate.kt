@@ -19,7 +19,7 @@ import kotlinx.android.extensions.LayoutContainer
  * @Des: AbsBaseViewHelper
  */
 abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> : LayoutContainer,
-    IloadDialog {
+    IloadDialog,ITAG {
     override lateinit var containerView: View
     private var delegate: AppCompatDelegate? = null
     protected val context: Context
@@ -88,7 +88,9 @@ abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> 
         this.presenter = presenter
         this.lifecycleOwner = lifecycleOwner
         this.viewModel = presenter.viewModel
-        this.containerView = view!!
+        view?.let {
+            this.containerView = it
+        }
         this.delegate = delegate
     }
 

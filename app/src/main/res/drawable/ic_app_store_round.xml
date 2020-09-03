@@ -6,14 +6,14 @@
         </shape>
     </item>
     <item
-        android:bottom="12dp"
-        android:left="12dp"
-        android:right="12dp"
-        android:top="12dp">
+        android:bottom="80dp"
+        android:left="80dp"
+        android:right="80dp"
+        android:top="80dp">
 
         <vector
-            android:width="36dp"
-            android:height="36dp"
+            android:width="216dp"
+            android:height="216dp"
             android:viewportWidth="1024"
             android:viewportHeight="1024">
             <path

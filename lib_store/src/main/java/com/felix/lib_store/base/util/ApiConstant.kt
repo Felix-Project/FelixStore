@@ -12,7 +12,7 @@ val <T> T.CommentNumPattern: Pattern by lazy {
     Pattern.compile("\\d+")
 }
 val <T> T.AppSizePattern: Pattern by lazy {
-    Pattern.compile("\\s*\\d+(.[0-9]{0,2})?\\s*[kKmMgG]\\s*")
+    Pattern.compile("\\s*[\\d,]+(.[0-9]{0,2})?\\s*[kKmMgG]\\s*")
 }
 
 val <T> T.VersionPattern: Pattern by lazy {

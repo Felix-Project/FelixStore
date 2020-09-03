@@ -17,6 +17,7 @@ open class BaseMvpFragment<V : IBaseView,
     BaseFragment() {
     protected lateinit var presenter: P
     protected lateinit var viewDelegate: VD
+    protected lateinit var iView: V
     protected val viewModel: VM
         get() = presenter.viewModel
 
@@ -26,13 +27,14 @@ open class BaseMvpFragment<V : IBaseView,
         savedInstanceState: Bundle?
     ): View? {
         viewDelegate = newViewDelegate()
+        iView = viewDelegate as V
         return viewDelegate.onCreateView(inflater, container)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         presenter = newPresenter()
-        presenter.attach(this, viewDelegate as V)
+        presenter.attach(this, iView)
         viewDelegate.attach(presenter, this, view)
         viewDelegate.onActivityCreated()
     }
