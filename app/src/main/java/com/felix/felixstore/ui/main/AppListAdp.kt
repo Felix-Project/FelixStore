@@ -15,9 +15,7 @@ import kotlinx.android.synthetic.main.common_app_item.view.*
 class AppListAdp : BaseAdp<AppItem>() {
     override val layoutId: Int = R.layout.common_app_item
 
-
-    override val onDataChangeListenner:
-                (View, AppItem, Int, Int) -> Unit = { view, appItem, position, size ->
+    override fun onDataChange(view: View, appItem: AppItem, pos: Int, size: Int) {
         view.apply {
             Glide.with(ivAppIcon).load(appItem.appIcon).into(ivAppIcon)
             tvAppName.text = appItem.appName

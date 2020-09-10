@@ -54,7 +54,7 @@ class HotViewDelegate : AbsBaseViewDelegate<HotPresenterImpl, HotViewModel>(), H
         observe(viewModel.hotAppList) {
             appListAdp.datas = it
         }
-        appListAdp.onItemClickListenner = { view, appItem, position, size ->
+        appListAdp.onItemClickListener = { view, appItem, position, size ->
 //            ToastDelegate.show("点击了详情")
             val uri: Uri = Uri.parse(AppUrl + appItem.appDetailUrl)
             val intent = Intent(Intent.ACTION_VIEW, uri)

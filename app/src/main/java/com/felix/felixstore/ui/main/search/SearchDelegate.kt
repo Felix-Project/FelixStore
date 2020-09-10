@@ -1,12 +1,9 @@
 package com.felix.felixstore.ui.main.search
 
 import android.content.Context.INPUT_METHOD_SERVICE
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.FOCUSABLE_AUTO
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -15,8 +12,6 @@ import com.felix.felixstore.R
 import com.felix.felixstore.ui.detail.DetailActivity
 import com.felix.lib_arch.mvpvm.AbsBaseViewDelegate
 import com.felix.felixstore.ui.main.AppListAdp
-import com.felix.lib_store.base.util.AdmPkg
-import com.felix.lib_store.base.util.AppUrl
 import kotlinx.android.synthetic.main.search_fragment.*
 
 
@@ -56,7 +51,7 @@ class SearchDelegate : AbsBaseViewDelegate<SearchPresenterImpl, SearchViewModel>
             appListAdp.datas = it
             dismissLoading()
         }
-        appListAdp.onItemClickListenner = { view, appItem, position, size ->
+        appListAdp.onItemClickListener = { view, appItem, position, size ->
 //            ToastDelegate.show("点击了详情")
 //            val uri: Uri = Uri.parse(AppUrl + appItem.appDetailUrl)
 //            val intent = Intent(Intent.ACTION_VIEW, uri)
