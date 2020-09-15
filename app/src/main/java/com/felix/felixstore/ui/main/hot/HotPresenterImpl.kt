@@ -1,9 +1,9 @@
 package com.felix.felixstore.ui.main.hot
 
-import com.felix.lib_arch.mvpvm.AbsBasePresenter
 import com.felix.felixstore.rx.ext.RxMain
 import com.felix.felixstore.rx.ext.RxNet
 import com.felix.felixstore.rx.ext.subscribeEmpty
+import com.felix.lib_arch.mvpvm.AbsBasePresenter
 import com.felix.lib_store.base.service.ApiDelegate
 
 /**
@@ -20,9 +20,7 @@ class HotPresenterImpl : AbsBasePresenter<HotView, HotViewModel>(), HotPresenter
     }
 
     override fun getNextHotAppList() {
-        ApiDelegate.getTopList(nextPage).subscribeOn(RxNet).also {
-
-        }.doOnNext { appList ->
+        ApiDelegate.getTopList(nextPage).subscribeOn(RxNet).doOnNext { appList ->
             viewModel.hotAppList.addValue(appList)
         }.observeOn(RxMain).doOnNext {
             view.onPageLoad(nextPage++, it.firstOrNull()?.allPage ?: -1)

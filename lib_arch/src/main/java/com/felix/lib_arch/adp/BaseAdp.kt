@@ -38,9 +38,7 @@ abstract class BaseAdp<T> : RecyclerView.Adapter<BaseAdp.CommonVH>(), ITAG {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonVH =
         parent.context.let {
             LayoutInflater.from(it)
-        }.let {
-            it.inflate(layoutId, parent, false)
-        }.let { view ->
+        }.inflate(layoutId, parent, false).let { view ->
             CommonVH(view)
         }
 
@@ -56,6 +54,5 @@ abstract class BaseAdp<T> : RecyclerView.Adapter<BaseAdp.CommonVH>(), ITAG {
         }
     }
 
-    class CommonVH(view: View) : RecyclerView.ViewHolder(view) {
-    }
+    class CommonVH(view: View) : RecyclerView.ViewHolder(view)
 }

@@ -24,10 +24,8 @@ internal class ApiManager : ApiService {
             addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             addConverterFactory(HtmlFactory())
             build()
-        }.let {
-            it.create(RemoteApiService::class.java)
-        }
+        }.create(RemoteApiService::class.java)
 }
 
-val <T> T.ApiDelegate: ApiService
+val ApiDelegate: ApiService
     get() = ApiManager.instance

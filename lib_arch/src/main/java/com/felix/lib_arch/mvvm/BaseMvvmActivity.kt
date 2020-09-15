@@ -16,11 +16,8 @@ class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
     private fun initViewModel() {
         javaClass.genericSuperclass.takeIf { it is ParameterizedType }?.let {
             it as ParameterizedType
-        }?.let {
-            it.actualTypeArguments
-        }?.let {
-            it.getOrNull(0)
-        }?.let {
+        }?.actualTypeArguments?.getOrNull(0)?.let {
+            @Suppress("UNCHECKED_CAST")
             it as Class<VM>
         }?.let {
             this.viewModel = ViewModelProvider(this).get(it)

@@ -14,11 +14,7 @@ class AppItemConverter : BaseConverter<List<AppItem>>() {
             it is ParameterizedType
         }?.let {
             it as ParameterizedType
-        }?.let {
-            it.actualTypeArguments
-        }?.let {
-            it.first()
-        }?.let {
+        }?.actualTypeArguments?.first()?.let {
             it == AppItem::class.java
         } ?: false
 
@@ -26,23 +22,15 @@ class AppItemConverter : BaseConverter<List<AppItem>>() {
         var pages = 0
         return responseBody?.let {
             it.string()
-        }?.let {
+        }.let {
             Jsoup.parse(it)
         }?.also {
-            it.select(".pages").firstOrNull()?.let {
-                it.select("a")
-            }?.forEach {
-                it.text()?.takeIf { it.isDigitsOnly() }?.let {
-                    it.toInt()
-                }?.takeIf { it > pages }?.also {
+            it.select(".pages").firstOrNull()?.select("a")?.forEach {
+                it.text()?.takeIf { it.isDigitsOnly() }?.toInt()?.takeIf { it > pages }?.also {
                     pages = it
                 }
             }
-        }?.let {
-            it.select(".applist").firstOrNull()
-        }?.let {
-            it.select("li")
-        }?.map {
+        }?.select(".applist")?.firstOrNull()?.select("li")?.map {
             AppItem().apply {
                 it.select("h5").first()?.let {
                     appDetailUrl = it.select("a").firstOrNull()?.attr("href")

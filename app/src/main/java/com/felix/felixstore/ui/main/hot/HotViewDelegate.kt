@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.felix.felixstore.R
-import com.felix.lib_arch.mvpvm.AbsBaseViewDelegate
 import com.felix.felixstore.ext.lastUnVisibleCount
 import com.felix.felixstore.ui.main.AppListAdp
+import com.felix.lib_arch.mvpvm.AbsBaseViewDelegate
 import com.felix.lib_store.base.util.AdmPkg
 import com.felix.lib_store.base.util.AppUrl
 import kotlinx.android.synthetic.main.hot_fragment.*
@@ -38,9 +38,6 @@ class HotViewDelegate : AbsBaseViewDelegate<HotPresenterImpl, HotViewModel>(), H
             presenter.getHotAppList()
         }
         rvAppList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-            }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -58,7 +55,7 @@ class HotViewDelegate : AbsBaseViewDelegate<HotPresenterImpl, HotViewModel>(), H
 //            ToastDelegate.show("点击了详情")
             val uri: Uri = Uri.parse(AppUrl + appItem.appDetailUrl)
             val intent = Intent(Intent.ACTION_VIEW, uri)
-            context.packageManager.getInstalledPackages(0)?.any {
+            context.packageManager.getInstalledPackages(0).any {
                 AdmPkg == it.packageName
             }?.takeIf {
                 it

@@ -21,9 +21,7 @@ interface IloadDialog {
             dialog = it
         }.also {
             it.setMessage(content)
-        }.let {
-            it.show()
-        }
+        }.show()
     }
 
     fun dismissLoading() {

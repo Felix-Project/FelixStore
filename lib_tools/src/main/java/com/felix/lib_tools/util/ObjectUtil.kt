@@ -11,11 +11,8 @@ fun <T : Parcelable> Parcelable.copy(): T? {
             .also {
                 it.writeParcelable(this, 0)
                 it.setDataPosition(0)
-            }
-            .let {
-                it.readParcelable(this::class.java.classLoader)
-            }
+            }.readParcelable(this::class.java.classLoader)
     } finally {
-        parcel?.recycle();
+        parcel?.recycle()
     }
 }

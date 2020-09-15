@@ -42,29 +42,17 @@ open class BaseMvpFragment<V : IBaseView,
     open protected fun newPresenter(): P {
         return javaClass.genericSuperclass.takeIf { it is ParameterizedType }?.let {
             it as ParameterizedType
-        }?.let {
-            it.actualTypeArguments
-        }?.let {
-            it.getOrNull(2)
-        }?.let {
+        }?.actualTypeArguments?.getOrNull(2)?.let {
             it as Class<P>
-        }?.let {
-            it.newInstance()
-        }!!
+        }?.newInstance()!!
     }
 
     open protected fun newViewDelegate(): VD {
         return javaClass.genericSuperclass.takeIf { it is ParameterizedType }?.let {
             it as ParameterizedType
-        }?.let {
-            it.actualTypeArguments
-        }?.let {
-            it.getOrNull(3)
-        }?.let {
+        }?.actualTypeArguments?.getOrNull(3)?.let {
             it as Class<VD>
-        }?.let {
-            it.newInstance()
-        }!!
+        }?.newInstance()!!
     }
 
 

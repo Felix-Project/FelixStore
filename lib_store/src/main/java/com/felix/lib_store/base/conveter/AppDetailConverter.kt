@@ -5,27 +5,20 @@ import com.felix.lib_store.base.util.*
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Retrofit
-import java.lang.StringBuilder
 import java.lang.reflect.Type
 
 class AppDetailConverter : BaseConverter<AppDetailBean>() {
     override fun match(type: Type, annotations: Array<Annotation>, retrofit: Retrofit) =
         type == AppDetailBean::class.java
 
-    override fun converter(responseBody: ResponseBody) = responseBody?.let {
-        it.string()
-    }?.let {
+    override fun converter(responseBody: ResponseBody) = responseBody.string().let {
         Jsoup.parse(it)
-    }?.let {
-        it.select(".container.cf").firstOrNull()
-    }?.let { doc ->
+    }?.select(".container.cf")?.firstOrNull()?.let { doc ->
         AppDetailBean().apply {
             //app基本信息
             doc.select(".app-info").firstOrNull()?.also {
                 this.appIcon = it.select("img").first().attr("src")
-            }?.let {
-                it.select(".intro-titles").firstOrNull()
-            }?.also {
+            }?.select(".intro-titles")?.firstOrNull()?.also {
                 //应用公司简介
                 this.appCompanyTip = it.select("p").firstOrNull()?.text()
                 //应用名称
@@ -40,9 +33,7 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                 }.getOrDefault(0)
                 //评论数
                 this.appRemarkNum = it.select(".app-intro-comment").firstOrNull()?.text()?.let {
-                    CommentNumPattern.matcher(it).takeIf { it.find() }?.let {
-                        it.group()
-                    }
+                    CommentNumPattern.matcher(it).takeIf { it.find() }?.group()
                 }.runCatching {
                     this?.toInt() ?: 0
                 }.getOrDefault(0)
@@ -58,38 +49,40 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                 //app的基本文件信息
                 it.select(".cf").firstOrNull()?.select("li")?.filter {
                     it.className().isNullOrEmpty()
-                }?.map {
+                }?.mapNotNull {
                     it.text()
-                }?.filterNotNull()?.forEach {
-                    if (AppSizePattern.matcher(it).matches()) {
-                        val size =
-                            it.substring(0, it.length - 2)
-                                .replace(" ", "")
-                                .replace(",", "")
-                                .toDoubleOrNull() ?: 0.0
-                        this.appSize = it.trimEnd().last().let {
-                            if (it in arrayOf('k', 'K')) {
-                                (size * 1024).toInt()
-                            } else if (it in arrayOf('m', 'M')) {
-                                (size * 1024 * 1024).toInt()
-                            } else if (it in arrayOf('g', 'G')) {
-                                (size * 1024 * 1024 * 1024).toInt()
-                            } else {
-                                size.toInt()
+                }?.forEach {
+                    when {
+                        AppSizePattern.matcher(it).matches() -> {
+                            val size =
+                                it.substring(0, it.length - 2)
+                                    .replace(" ", "")
+                                    .replace(",", "")
+                                    .toDoubleOrNull() ?: 0.0
+                            this.appSize = it.trimEnd().last().let {
+                                if (it in arrayOf('k', 'K')) {
+                                    (size * 1024).toInt()
+                                } else if (it in arrayOf('m', 'M')) {
+                                    (size * 1024 * 1024).toInt()
+                                } else if (it in arrayOf('g', 'G')) {
+                                    (size * 1024 * 1024 * 1024).toInt()
+                                } else {
+                                    size.toInt()
+                                }
                             }
                         }
-                    } else if (DatePattern.matcher(it).matches()) {
-                        this.appLastUpdateDate = it
-                    } else if (PkgPattern.matcher(it).matches()) {
-                        this.appPkgName = it
+                        DatePattern.matcher(it).matches() -> {
+                            this.appLastUpdateDate = it
+                        }
+                        PkgPattern.matcher(it).matches() -> {
+                            this.appPkgName = it
+                        }
                     }
                 }
                 //app的权限信息
-                it.select(".second-ul").firstOrNull()?.let {
-                    it.select("li")
-                }?.map {
+                it.select(".second-ul").firstOrNull()?.select("li")?.mapNotNull {
                     it.text()
-                }?.filterNotNull()?.map {
+                }?.map {
                     it.replace("▪ ", "").trim()
                 }?.let {
                     this.appPermissionList = it
@@ -99,40 +92,39 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
             //截图信息
             doc.getElementById("J_thumbnail_wrap")?.let {
                 it.select("img")?.filterNotNull()
-            }?.map {
+            }?.mapNotNull {
                 it.attr("src")
-            }?.filterNotNull()?.let {
+            }?.let {
                 this.appScreenshotList = it
             }
 
             //应用介绍信息
-            doc.getElementsByClass("app-text").firstOrNull()?.let {
-                it.select(".pslide").filterNotNull()
-            }?.let {
-                val des = StringBuilder()
-                it.getOrNull(0)?.textNodes()?.filterNotNull()?.map {
-                    it.text()
-                }?.filterNotNull()?.forEach {
-                    if (it.isBlank()) {
-                        des.append("\n")
-                    } else {
-                        des.append(it.trim())
+            doc.getElementsByClass("app-text").firstOrNull()?.select(".pslide")?.filterNotNull()
+                ?.let {
+                    val des = StringBuilder()
+                    it.getOrNull(0)?.textNodes()?.filterNotNull()?.mapNotNull {
+                        it.text()
+                    }?.forEach {
+                        if (it.isBlank()) {
+                            des.append("\n")
+                        } else {
+                            des.append(it.trim())
+                        }
                     }
-                }
-                this.appDescription = des.toString()
+                    this.appDescription = des.toString()
 
 
-                val feature = StringBuilder()
-                it.getOrNull(0)?.textNodes()?.filterNotNull()?.map {
-                    it.text()
-                }?.filterNotNull()?.forEach {
-                    if (it.isBlank()) {
-                        feature.append("\n")
-                    } else {
-                        feature.append(it.trim())
+                    val feature = StringBuilder()
+                    it.getOrNull(0)?.textNodes()?.filterNotNull()?.mapNotNull {
+                        it.text()
+                    }?.forEach {
+                        if (it.isBlank()) {
+                            feature.append("\n")
+                        } else {
+                            feature.append(it.trim())
+                        }
                     }
-                }
-                this.appFeature = feature.toString()
+                    this.appFeature = feature.toString()
             }
         }
     }

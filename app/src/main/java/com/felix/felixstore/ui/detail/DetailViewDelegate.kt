@@ -13,7 +13,7 @@ import com.felix.lib_store.base.util.AppUrl
 import kotlinx.android.synthetic.main.detail_activity.*
 
 class DetailViewDelegate : AbsBaseViewDelegate<DetailPresenterImpl, DetailViewModel>(), DetailView {
-    val screenshotAdp = ScreenshotAdp()
+    private val screenshotAdp = ScreenshotAdp()
     override fun onActivityCreated() {
         super.onActivityCreated()
         setContentView(R.layout.detail_activity)
@@ -57,10 +57,10 @@ class DetailViewDelegate : AbsBaseViewDelegate<DetailPresenterImpl, DetailViewMo
             } ?: kotlin.run { appDetailBean.appRemarkNum.toString() }
 
             tvAppStar.text = String.format("%.1f", appDetailBean.appStartNum / 2f)
-            tvAppSize.text = appDetailBean.appSize.let {
-                var ch = arrayOf('K', 'M', 'G', 'T', 'P')
+            tvAppSize.text = appDetailBean.appSize.let { appSize ->
+                val ch = arrayOf('K', 'M', 'G', 'T', 'P')
                 var index = -1
-                var size = it.toFloat()
+                var size = appSize.toFloat()
                 while (size > 1024) {
                     size /= 1024
                     index++

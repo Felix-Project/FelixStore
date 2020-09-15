@@ -19,14 +19,14 @@ import kotlinx.android.extensions.LayoutContainer
  * @Des: AbsBaseViewHelper
  */
 abstract class AbsBaseViewDelegate<P : AbsBasePresenter<*, VM>, VM : ViewModel> : LayoutContainer,
-    IloadDialog,ITAG {
+    IloadDialog, ITAG {
     override lateinit var containerView: View
     private var delegate: AppCompatDelegate? = null
     protected val context: Context
-        get() = containerView?.context!!
+        get() = containerView.context
 
     override var ctx: Context? = null
-        get() = containerView?.context
+        get() = containerView.context
     override var dialog: ProgressDialog? = null
 
     //fragment的时候需要重写，直接返回view，不建议做其他处理

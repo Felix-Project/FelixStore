@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  */
 val RecyclerView.lastUnVisibleCount: Int
     get() = kotlin.run {
-        val layoutManager = getLayoutManager() as LinearLayoutManager
+        val layoutManager = layoutManager as LinearLayoutManager
         //屏幕中最后一个可见子项的position
         //屏幕中最后一个可见子项的position
         val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
@@ -23,7 +23,7 @@ val RecyclerView.lastUnVisibleCount: Int
         val totalItemCount = layoutManager.itemCount
         //RecyclerView的滑动状态
         //RecyclerView的滑动状态
-        val state: Int = this.getScrollState()
+        val state: Int = this.scrollState
         takeIf { visibleItemCount > 0 }?.let {
             totalItemCount - lastVisibleItemPosition
         } ?: 0
