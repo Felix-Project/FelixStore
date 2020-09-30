@@ -11,7 +11,7 @@ class AppCategoryConveter : BaseConverter<String>() {
 
 
     override fun converter(responseBody: ResponseBody): String? {
-        return responseBody?.let {
+        return responseBody.let {
             it.string()
         }.let {
             Jsoup.parse(it)

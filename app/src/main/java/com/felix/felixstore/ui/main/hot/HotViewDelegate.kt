@@ -57,7 +57,7 @@ class HotViewDelegate : AbsBaseViewDelegate<HotPresenterImpl, HotViewModel>(), H
             val intent = Intent(Intent.ACTION_VIEW, uri)
             context.packageManager.getInstalledPackages(0).any {
                 AdmPkg == it.packageName
-            }?.takeIf {
+            }.takeIf {
                 it
             }?.let {
                 intent.setPackage(AdmPkg)

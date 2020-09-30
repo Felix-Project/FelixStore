@@ -20,7 +20,7 @@ class AppItemConverter : BaseConverter<List<AppItem>>() {
 
     override fun converter(responseBody: ResponseBody): List<AppItem>? {
         var pages = 0
-        return responseBody?.let {
+        return responseBody.let {
             it.string()
         }.let {
             Jsoup.parse(it)

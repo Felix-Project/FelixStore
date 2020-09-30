@@ -5,6 +5,7 @@ import com.felix.felixstore.rx.EmptySingle
 import com.felix.lib_tools.thread.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -14,22 +15,22 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  * @Des: RxExt
  */
 //Schedulers
-inline val RxNet
+inline val RxNet: Scheduler
     get() = Schedulers.from(NetThreadDelegate)
 
-inline val RxMain
+inline val RxMain: Scheduler
     get() = AndroidSchedulers.mainThread()
 
-inline val RxCompute
+inline val RxCompute: Scheduler
     get() = Schedulers.from(ComputeThreadDelegate)
 
-inline val RxSchedule
+inline val RxSchedule: Scheduler
     get() = Schedulers.from(ScheduleThreadDelegate)
 
-inline val RxDb
+inline val RxDb: Scheduler
     get() = Schedulers.from(DBThreadDelegate)
 
-inline val RxBackstage
+inline val RxBackstage: Scheduler
     get() = Schedulers.from(BackstageThreadDelegate)
 
 //subscribe
