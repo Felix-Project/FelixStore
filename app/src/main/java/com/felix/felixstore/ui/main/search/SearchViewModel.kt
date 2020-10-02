@@ -1,9 +1,30 @@
 package com.felix.felixstore.ui.main.search
 
-import androidx.lifecycle.ViewModel
-import com.felix.lib_arch.mvpvm.ListLiveData
+import com.felix.felixstore.rx.ext.RxNet
+import com.felix.felixstore.rx.ext.subscribeEmpty
+import com.felix.lib_arch.mvvm.BaseViewModel
+import com.felix.lib_arch.mvvm.ListLiveData
 import com.felix.lib_store.base.bean.AppItem
+import com.felix.lib_store.base.service.ApiDelegate
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel : BaseViewModel() {
     val hotAppList = ListLiveData<AppItem>()
+
+    fun getSearch(keyword: String) {
+        ApiDelegate.getAppItem(keyword, 1).subscribeOn(RxNet).doOnNext { appList ->
+            hotAppList.let {
+                it.value?.clear()
+                it.addValue(appList)
+            }
+        }.subscribeEmpty()
+    }
+
+    fun getDefAppList() {
+        ApiDelegate.getTopList(1).subscribeOn(RxNet).doOnNext { appList ->
+            hotAppList.let {
+                it.value?.clear()
+                it.addValue(appList)
+            }
+        }.subscribeEmpty()
+    }
 }
