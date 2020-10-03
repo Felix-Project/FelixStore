@@ -27,7 +27,7 @@ class DownloadImpl : DownloadService {
 
             override fun completed(task: BaseDownloadTask?) {
                 task?.targetFilePath?.let {
-                    FileProvider.getUriForFile(AppProxy, "com.felix.lib_download.apk", File(it))
+                    FileProvider.getUriForFile(AppProxy, BuildConfig.AUTHORITY, File(it))
                 }?.let(onCompelete) ?: kotlin.run {
                     onError.invoke(NullPointerException("file is null."))
                 }

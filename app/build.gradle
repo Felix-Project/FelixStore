@@ -48,6 +48,8 @@ dependencies {
     implementation project(path: ':lib_gson')
     implementation project(path: ':lib_store')
     implementation project(path: ':lib_arch')
+    implementation project(path: ':lib_component_base')
+    runtimeOnly project(path:':lib_download')
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -1,9 +1,9 @@
 package com.felix.felixstore
 
-import android.app.Application
 import com.felix.lib_app_tools.LibApp
+import com.felix.lib_component_base.BaseComponentApp
 
-class App : Application() {
+class App : BaseComponentApp() {
     override fun onCreate() {
         super.onCreate()
         LibApp.install(this)

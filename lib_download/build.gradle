@@ -17,7 +17,12 @@ android {
         versionCode 1
         versionName "1.0"
         if (isRunAlone.toBoolean()) {
-            applicationId "com.felix.lib_download"
+            applicationId "com.felix.lib_download.app"
+            manifestPlaceholders = [AUTHORITY: "com.felix.lib_download.apk"]
+            buildConfigField 'String', 'AUTHORITY', '\"com.felix.lib_download.apk\"'
+        } else {
+            manifestPlaceholders = [AUTHORITY: "com.felix.lib_download.lib"]
+            buildConfigField 'String', 'AUTHORITY', '\"com.felix.lib_download.lib\"'
         }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
