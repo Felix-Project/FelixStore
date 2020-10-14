@@ -45,49 +45,45 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                 }
             }
             //应用详细信息
-            doc.select(".details").firstOrNull()?.let {
-                //app的基本文件信息
-                it.select(".cf").firstOrNull()?.select("li")?.filter {
-                    it.className().isNullOrEmpty()
-                }?.mapNotNull {
-                    it.text()
-                }?.forEach {
-                    when {
-                        AppSizePattern.matcher(it).matches() -> {
-                            val size =
-                                it.substring(0, it.length - 2)
-                                    .replace(" ", "")
-                                    .replace(",", "")
-                                    .toDoubleOrNull() ?: 0.0
-                            this.appSize = it.trimEnd().last().let {
-                                if (it in arrayOf('k', 'K')) {
-                                    (size * 1024).toInt()
-                                } else if (it in arrayOf('m', 'M')) {
-                                    (size * 1024 * 1024).toInt()
-                                } else if (it in arrayOf('g', 'G')) {
-                                    (size * 1024 * 1024 * 1024).toInt()
-                                } else {
-                                    size.toInt()
-                                }
+            doc.select(".float-left")?.mapNotNull {
+                it.select("div").lastOrNull()?.text()?.trim()
+            }?.forEach {
+                when {
+                    AppSizePattern.matcher(it).matches() -> {
+                        val size =
+                            it.substring(0, it.length - 2)
+                                .replace(" ", "")
+                                .replace(",", "")
+                                .toDoubleOrNull() ?: 0.0
+                        this.appSize = it.trimEnd().last().let {
+                            if (it in arrayOf('k', 'K')) {
+                                (size * 1024).toLong()
+                            } else if (it in arrayOf('m', 'M')) {
+                                (size * 1024 * 1024).toLong()
+                            } else if (it in arrayOf('g', 'G')) {
+                                (size * 1024 * 1024 * 1024).toLong()
+                            } else {
+                                size.toLong()
                             }
                         }
-                        DatePattern.matcher(it).matches() -> {
-                            this.appLastUpdateDate = it
-                        }
-                        PkgPattern.matcher(it).matches() -> {
-                            this.appPkgName = it
-                        }
+                    }
+                    DatePattern.matcher(it).matches() -> {
+                        this.appLastUpdateDate = it
+                    }
+                    PkgPattern.matcher(it).matches() -> {
+                        this.appPkgName = it
                     }
                 }
-                //app的权限信息
-                it.select(".second-ul").firstOrNull()?.select("li")?.mapNotNull {
-                    it.text()
-                }?.map {
-                    it.replace("▪ ", "").trim()
-                }?.let {
-                    this.appPermissionList = it
-                }
             }
+            //app的权限信息
+//            it.select(".second-ul").firstOrNull()?.select("li")?.mapNotNull {
+//                it.text()
+//            }?.map {
+//                it.replace("▪ ", "").trim()
+//            }?.let {
+//                this.appPermissionList = it
+//            }
+
 
             //截图信息
             doc.getElementById("J_thumbnail_wrap")?.let {
@@ -125,7 +121,7 @@ class AppDetailConverter : BaseConverter<AppDetailBean>() {
                         }
                     }
                     this.appFeature = feature.toString()
-            }
+                }
         }
     }
 }
