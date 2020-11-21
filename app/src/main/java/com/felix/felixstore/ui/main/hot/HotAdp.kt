@@ -1,4 +1,4 @@
-//package com.felix.felixstore.ui.main.hot
+package com.felix.felixstore.ui.main.hot
 //
 //import android.view.View
 //import com.felix.lib_arch.adp.BaseAdp

@@ -9,5 +9,5 @@ object LibApp {
     }
 }
 
-val <T> T.AppProxy: Application
+val AppProxy: Application
     get() = LibApp.app!!

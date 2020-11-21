@@ -12,7 +12,7 @@ public class AppDetailBean extends AppItem {
     private int appRemarkNum;
     private int appStartNum;
 
-    private int appSize;
+    private long appSize;
     private String appLastUpdateDate;
     private String appVersionName;
     private List<String> appPermissionList;
@@ -66,11 +66,11 @@ public class AppDetailBean extends AppItem {
         this.appStartNum = appStartNum;
     }
 
-    public int getAppSize() {
+    public long getAppSize() {
         return appSize;
     }
 
-    public void setAppSize(int appSize) {
+    public void setAppSize(long appSize) {
         this.appSize = appSize;
     }
 
@@ -120,7 +120,7 @@ public class AppDetailBean extends AppItem {
         dest.writeString(this.appFeature);
         dest.writeInt(this.appRemarkNum);
         dest.writeInt(this.appStartNum);
-        dest.writeInt(this.appSize);
+        dest.writeLong(this.appSize);
         dest.writeString(this.appLastUpdateDate);
         dest.writeString(this.appVersionName);
         dest.writeStringList(this.appPermissionList);
@@ -138,7 +138,7 @@ public class AppDetailBean extends AppItem {
         this.appFeature = in.readString();
         this.appRemarkNum = in.readInt();
         this.appStartNum = in.readInt();
-        this.appSize = in.readInt();
+        this.appSize = in.readLong();
         this.appLastUpdateDate = in.readString();
         this.appVersionName = in.readString();
         this.appPermissionList = in.createStringArrayList();

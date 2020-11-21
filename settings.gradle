@@ -1,3 +1,5 @@
+include ':lib_download'
+include ':lib_component_base'
 include ':lib_arch'
 include ':lib_store'
 include ':lib_app_tools'

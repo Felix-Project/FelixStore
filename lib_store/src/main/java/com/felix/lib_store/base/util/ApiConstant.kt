@@ -2,10 +2,10 @@ package com.felix.lib_store.base.util
 
 import java.util.regex.Pattern
 
-val <T> T.AppUrl: String
+val AppUrl: String
     get() = "http://app.mi.com"
 
-val <T> T.AdmPkg: String
+val AdmPkg: String
     get() = "com.dv.adm.pay"
 
 val <T> T.CommentNumPattern: Pattern by lazy {

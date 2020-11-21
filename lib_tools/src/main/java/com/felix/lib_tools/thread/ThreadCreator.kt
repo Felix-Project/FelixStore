@@ -1,7 +1,6 @@
-package com.sf.warehouse.lib_basic.thread
+package com.felix.lib_tools.thread
 
 import android.os.Process
-import com.felix.lib_tools.handler.UIProxy
 import java.util.concurrent.ThreadFactory
 
 /**
@@ -27,7 +26,7 @@ internal class ThreadCreator(var name: String, var priority: Int = Thread.NORM_P
     }
 
     override fun newThread(r: Runnable?): Thread {
-        val t = Thread(Thread.currentThread().threadGroup, r, "${name} - Thread - ${state++}")
+        val t = Thread(Thread.currentThread().threadGroup, r, "$name - Thread - ${state++}")
 //        Process.setThreadPriority(t.id.toInt(), priority)
         if (t.isDaemon) {
             t.isDaemon = false

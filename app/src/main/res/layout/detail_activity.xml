@@ -74,34 +74,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:drawableEnd="@drawable/ic_star"
             android:drawablePadding="4dp"
             app:layout_constraintEnd_toStartOf="@+id/tvAppRemarkNum"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivAppIcon"
-            tools:text="4.6" />
+            tools:text="4.6"
+            app:drawableEndCompat="@drawable/ic_star" />
 
         <TextView
             android:id="@+id/tvAppRemarkNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_comment"
             android:drawablePadding="4dp"
             app:layout_constraintEnd_toStartOf="@+id/tvAppSize"
             app:layout_constraintStart_toEndOf="@id/tvAppStar"
             app:layout_constraintTop_toTopOf="@id/tvAppStar"
-            tools:text="213k" />
+            tools:text="213k"
+            app:drawableEndCompat="@drawable/ic_comment" />
 
         <TextView
             android:id="@+id/tvAppSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_file_size"
             android:drawablePadding="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvAppRemarkNum"
             app:layout_constraintTop_toTopOf="@id/tvAppStar"
-            tools:text="10M" />
+            tools:text="10M"
+            app:drawableEndCompat="@drawable/ic_file_size" />
 
 
         <Button

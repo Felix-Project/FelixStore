@@ -1,4 +1,4 @@
-package com.sf.warehouse.lib_basic.thread
+package com.felix.lib_tools.thread
 
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -76,20 +76,20 @@ internal class ThreadPoolManager {
     }
 }
 
-val <T> T.DBThreadDelegate
+val DBThreadDelegate
     get() = ThreadPoolManager.instance.getDBThreadPool()
 
-val <T> T.NetThreadDelegate
+val NetThreadDelegate
     get() = ThreadPoolManager.instance.getNetThreadPool()
 
-val <T> T.ComputeThreadDelegate
+val ComputeThreadDelegate
     get() = ThreadPoolManager.instance.getComputeThreadPool()
 
-val <T> T.ScheduleThreadDelegate
+val ScheduleThreadDelegate
     get() = ThreadPoolManager.instance.getScheduleThreadPool()
 
-val <T> T.BackstageThreadDelegate
+val BackstageThreadDelegate
     get() = ThreadPoolManager.instance.getBackstageThreadPool()
 
-val <T> T.ThreadDelegate
+val ThreadDelegate
     get() = ThreadPoolManager.instance.getCommonThreadPool()

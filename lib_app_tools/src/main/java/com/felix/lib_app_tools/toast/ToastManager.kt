@@ -16,7 +16,7 @@ internal class ToastManager : IToast {
 
     init {
         UIProxy.post {
-            toast = Toast.makeText(AppProxy, "", Toast.LENGTH_SHORT)
+            toast = Toast(AppProxy)
         }
     }
 
@@ -32,7 +32,7 @@ internal class ToastManager : IToast {
     }
 
     override fun show(resId: Int, duration: Int, gravity: Int) {
-        resId?.takeIf { it > 0 }?.let {
+        resId.takeIf { it > 0 }?.let {
             UIProxy.post {
                 toast.setText(resId)
                 toast.duration = duration
@@ -43,7 +43,7 @@ internal class ToastManager : IToast {
     }
 }
 
-val <T> T.ToastDelegate: IToast
+val ToastDelegate: IToast
     get() = ToastManager.instance
 
 fun String.showToast(duration: Int = Toast.LENGTH_SHORT, gravity: Int = Gravity.CENTER) {

@@ -7,12 +7,11 @@ import com.felix.lib_arch.adp.BaseAdp
 import kotlinx.android.synthetic.main.detail_screenshot_item.view.*
 
 class ScreenshotAdp : BaseAdp<String>() {
-    override val layoutId= R.layout.detail_screenshot_item
+    override val layoutId = R.layout.detail_screenshot_item
 
-    override val onDataChangeListenner: (View, String, Int, Int) -> Unit
-        get() = {view, url, pos, size ->
-            view.apply {
-                Glide.with(context).load(url).into(ivScreenshot)
-            }
+    override fun onDataChange(view: View, data: String, pos: Int, size: Int) {
+        view.apply {
+            Glide.with(context).load(data).into(ivScreenshot)
         }
+    }
 }

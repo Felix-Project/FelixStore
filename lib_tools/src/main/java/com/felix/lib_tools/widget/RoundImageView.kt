@@ -3,7 +3,6 @@ package com.felix.lib_tools.widget
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import androidx.appcompat.widget.AppCompatImageView
 import com.felix.lib_tools.R
 
@@ -25,6 +24,7 @@ class RoundImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) 
     init {
         context.obtainStyledAttributes(attrs, R.styleable.RoundImageView, defStyleAttr, 0).let {
             round = it.getDimension(R.styleable.RoundImageView_radius, 0f)
+            it.recycle()
         }
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_OUT)
     }

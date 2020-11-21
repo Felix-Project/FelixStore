@@ -1,6 +1,5 @@
 package com.felix.lib_store.base.conveter
 
-import com.felix.lib_store.base.bean.AppCategory
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Retrofit
@@ -12,20 +11,12 @@ class AppCategoryConveter : BaseConverter<String>() {
 
 
     override fun converter(responseBody: ResponseBody): String? {
-        return responseBody?.let {
+        return responseBody.let {
             it.string()
-        }?.let {
+        }.let {
             Jsoup.parse(it)
-        }?.let {
-            it.select(".applist-wrap").firstOrNull()
-        }?.takeIf {
+        }?.select(".applist-wrap")?.firstOrNull()?.takeIf {
             it.select(".applist").firstOrNull()?.select("li")?.size ?: 0 > 0
-        }?.let {
-            it.select(".main-h").firstOrNull()
-        }?.let {
-            it.select("h3").firstOrNull()
-        }?.let {
-            it.text()
-        }
+        }?.select(".main-h")?.firstOrNull()?.select("h3")?.firstOrNull()?.text()
     }
 }
