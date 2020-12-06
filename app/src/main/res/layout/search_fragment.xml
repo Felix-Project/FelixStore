@@ -25,6 +25,7 @@
                 android:elevation="8dp"
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:padding="8dp"
                 android:textSize="16sp"
                 app:layout_collapseMode="parallax" />

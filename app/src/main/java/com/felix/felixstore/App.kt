@@ -1,11 +1,12 @@
 package com.felix.felixstore
 
-import com.felix.lib_app_tools.LibApp
-import com.felix.lib_component_base.BaseComponentApp
+import android.content.Context
+import com.felix.commgmt.BaseCompApp
+import com.felix.utils.AppUtils
 
-class App : BaseComponentApp() {
-    override fun onCreate() {
-        super.onCreate()
-        LibApp.install(this)
+class App : BaseCompApp() {
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        AppUtils.setup(this)
     }
 }

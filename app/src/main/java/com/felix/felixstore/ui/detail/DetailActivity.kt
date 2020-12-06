@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.felix.felixstore.R
-import com.felix.lib_arch.mvvm.BaseMvvmActivity
+import com.felix.arch.mvvm.BaseMvvmActivity
 import com.felix.lib_store.base.bean.AppItem
 import kotlinx.android.synthetic.main.detail_activity.*
 

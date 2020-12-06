@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.felix.felixstore.R
 import com.felix.felixstore.ui.main.AppListAdp
-import com.felix.lib_arch.mvvm.BaseMvvmFragment
+import com.felix.arch.mvvm.BaseMvvmFragment
 import kotlinx.android.synthetic.main.search_fragment.*
 import kotlin.math.abs
 
@@ -32,6 +32,7 @@ class SearchFragment : BaseMvvmFragment<SearchViewModel>() {
         rvAppList.adapter = appListAdp
 
         etKeyword.setOnEditorActionListener { v, actionId, event ->
+            Log.i(TAG, "onActivityCreated: ")
             arrayOf(
                 EditorInfo.IME_ACTION_SEARCH,
                 EditorInfo.IME_ACTION_DONE,

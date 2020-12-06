@@ -1,4 +1,4 @@
-package com.felix.lib_arch.mvvm
+package com.felix.arch.mvvm
 
 import androidx.lifecycle.LiveData
 

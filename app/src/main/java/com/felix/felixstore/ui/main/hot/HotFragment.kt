@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.felix.felixstore.R
 import com.felix.felixstore.ext.lastUnVisibleCount
 import com.felix.felixstore.ui.main.AppListAdp
-import com.felix.lib_arch.mvvm.BaseMvvmFragment
+import com.felix.arch.mvvm.BaseMvvmFragment
 import kotlinx.android.synthetic.main.hot_fragment.*
 
 class HotFragment : BaseMvvmFragment<HotViewModel>() {

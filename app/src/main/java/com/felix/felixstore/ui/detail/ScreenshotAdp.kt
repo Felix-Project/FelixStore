@@ -3,7 +3,7 @@ package com.felix.felixstore.ui.detail
 import android.view.View
 import com.bumptech.glide.Glide
 import com.felix.felixstore.R
-import com.felix.lib_arch.adp.BaseAdp
+import com.felix.arch.adp.BaseAdp
 import kotlinx.android.synthetic.main.detail_screenshot_item.view.*
 
 class ScreenshotAdp : BaseAdp<String>() {

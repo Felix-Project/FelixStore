@@ -4,7 +4,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.felix.felixstore.R
 import com.felix.felixstore.ui.detail.DetailActivity
-import com.felix.lib_arch.adp.BaseAdp
+import com.felix.arch.adp.BaseAdp
 import com.felix.lib_store.base.bean.AppItem
 import kotlinx.android.synthetic.main.common_app_item.view.*
 

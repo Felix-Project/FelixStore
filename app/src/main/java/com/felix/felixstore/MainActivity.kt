@@ -3,7 +3,7 @@ package com.felix.felixstore
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.felix.lib_gson.toJson
+import com.felix.utils.gson.toJson
 import com.felix.lib_store.base.service.ApiDelegate
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*

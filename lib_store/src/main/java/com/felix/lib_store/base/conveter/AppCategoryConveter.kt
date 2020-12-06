@@ -1,5 +1,6 @@
 package com.felix.lib_store.base.conveter
 
+import com.felix.utils.gson.toJson
 import okhttp3.ResponseBody
 import org.jsoup.Jsoup
 import retrofit2.Retrofit

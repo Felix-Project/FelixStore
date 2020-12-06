@@ -13,7 +13,7 @@
 
         android:layout_height="wrap_content">
 
-        <com.felix.lib_tools.widget.RoundImageView
+        <com.felix.utils.widget.RoundImageView
             android:id="@+id/ivAppIcon"
             android:layout_width="48dp"
             android:layout_height="48dp"

@@ -1,10 +1,10 @@
-package com.felix.lib_arch.adp
+package com.felix.arch.adp
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.felix.lib_arch.mvvm.ITAG
+import com.felix.arch.mvvm.ITAG
 
 /**
  * @Author: Mingfa.Huang

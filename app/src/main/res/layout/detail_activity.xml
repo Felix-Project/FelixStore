@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <!--base info-->
-        <com.felix.lib_tools.widget.RoundImageView
+        <com.felix.utils.widget.RoundImageView
             android:id="@+id/ivAppIcon"
             android:layout_width="64dp"
             android:layout_height="64dp"
@@ -75,33 +75,33 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:drawablePadding="4dp"
+            app:drawableEndCompat="@drawable/ic_star"
             app:layout_constraintEnd_toStartOf="@+id/tvAppRemarkNum"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivAppIcon"
-            tools:text="4.6"
-            app:drawableEndCompat="@drawable/ic_star" />
+            tools:text="4.6" />
 
         <TextView
             android:id="@+id/tvAppRemarkNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"
+            app:drawableEndCompat="@drawable/ic_comment"
             app:layout_constraintEnd_toStartOf="@+id/tvAppSize"
             app:layout_constraintStart_toEndOf="@id/tvAppStar"
             app:layout_constraintTop_toTopOf="@id/tvAppStar"
-            tools:text="213k"
-            app:drawableEndCompat="@drawable/ic_comment" />
+            tools:text="213k" />
 
         <TextView
             android:id="@+id/tvAppSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawablePadding="4dp"
+            app:drawableEndCompat="@drawable/ic_file_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvAppRemarkNum"
             app:layout_constraintTop_toTopOf="@id/tvAppStar"
-            tools:text="10M"
-            app:drawableEndCompat="@drawable/ic_file_size" />
+            tools:text="10M" />
 
 
         <Button

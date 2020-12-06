@@ -3,18 +3,21 @@ package com.felix.felixstore.ui.detail
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import androidx.core.content.FileProvider
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.felix.felixstore.rx.ext.RxNet
 import com.felix.felixstore.rx.ext.subscribeEmpty
-import com.felix.lib_app_tools.AppProxy
+import com.felix.utils.AppDelegate
 import com.felix.lib_app_tools.toast.ToastDelegate
-import com.felix.lib_arch.mvvm.BaseViewModel
-import com.felix.lib_component_base.service.ComponentProxy
-import com.felix.lib_component_base.service.DownloadService
+import com.felix.arch.mvvm.BaseViewModel
+import com.felix.downloader.api.DownloadService
+import com.felix.downloader.api.DownloaderDelegate
+import com.felix.felixstore.BuildConfig
 import com.felix.lib_store.base.bean.AppDetailBean
 import com.felix.lib_store.base.bean.AppItem
 import com.felix.lib_store.base.service.ApiDelegate
+import java.io.File
 
 class DetailViewModel : BaseViewModel() {
     var appItem = MutableLiveData<AppItem>()
@@ -22,20 +25,18 @@ class DetailViewModel : BaseViewModel() {
 
     //app大小
     var appSize = Transformations.map(appDetailBean) { detailBean ->
-        detailBean.appSize.let { appSize ->
-            Log.i(TAG, "appSize:${appSize} ")
-            val ch = arrayOf('K', 'M', 'G', 'T', 'P')
-            var index = -1
-            var size = appSize.toFloat()
-            while (size > 1024L) {
-                size /= 1024L
-                index++
-            }
-            (index.takeIf { it >= 0 }?.let {
-                ch[it]
-            } ?: ' ').let {
-                String.format("%.2f%c", size, it)
-            }
+        val ch = arrayOf('K', 'M', 'G', 'T', 'P')
+        var index = -1
+        var size = detailBean.appSize.toFloat()
+        Log.i(TAG, "appSize:${size} ")
+        while (size > 1024L) {
+            size /= 1024L
+            index++
+        }
+        (index.takeIf { it >= 0 }?.let {
+            ch[it]
+        } ?: ' ').let {
+            String.format("%.2f%c", size, it)
         }
     }
 
@@ -66,7 +67,7 @@ class DetailViewModel : BaseViewModel() {
                 name = " ${appPkgName}_${appVersionName}".replace('.', '_').plus(".apk")
             )
         }?.let { config ->
-            ComponentProxy.downloadService.download(config, {
+            DownloaderDelegate.download(config, {
                 install(it)
             }, {
                 it.printStackTrace()
@@ -75,13 +76,16 @@ class DetailViewModel : BaseViewModel() {
         }
     }
 
-    private fun install(uri: Uri) {
-        Intent().apply {
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            setDataAndType(uri, "application/vnd.android.package-archive")
+    private fun install(file: File) {
+        FileProvider.getUriForFile(AppDelegate, BuildConfig.AUTHORITY, file).let { uri ->
+            Intent().apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                setDataAndType(uri, "application/vnd.android.package-archive")
+            }
         }.let {
-            AppProxy.startActivity(it)
+            AppDelegate.startActivity(it)
         }
+
     }
 }

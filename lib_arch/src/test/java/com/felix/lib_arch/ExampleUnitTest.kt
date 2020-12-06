@@ -1,4 +1,4 @@
-package com.felix.lib_arch
+package com.felix.arch
 
 import org.junit.Test
 

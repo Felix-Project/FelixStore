@@ -1,8 +1,8 @@
 package com.felix.lib_store.base.service
 
 import android.util.Log
-import com.felix.lib_gson.fromJson
-import com.felix.lib_gson.toJson
+import com.felix.utils.gson.fromJson
+import com.felix.utils.gson.toJson
 import com.felix.lib_store.base.bean.AppCategory
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
